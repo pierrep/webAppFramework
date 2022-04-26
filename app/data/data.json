@@ -1,0 +1,28 @@
+{ "stories": 
+	[ 
+		{	
+			"id": 1,
+			"title": "Story 1",
+			"image": "scene1.jpg", 
+			"duration": 0 			
+		}, 
+		{	
+			"id": 2,
+			"title": "Story 2", 
+			"image": "scene2.jpg", 
+			"duration": 0	
+		},
+		{	
+			"id": 3,
+			"title": "Story 3", 
+			"image": "scene3.jpg", 
+			"duration": 0	
+		},
+		{	
+			"id": 4,
+			"title": "Story 4", 
+			"image": "scene4.jpg", 
+			"duration": 0	
+		}				
+	] 
+}
