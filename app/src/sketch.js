@@ -1,4 +1,4 @@
-//var canvas;
+
 var offsetY = 0;
 var mgr;
 var buttonstyleMenu;
@@ -14,29 +14,6 @@ var fontGotham;
 var fontApercu;
 var menuimg;
 var backimg;
-
-class Story {
-  constructor(id, title, image) {
-    this.id = id;
-    this.title = title;
-    this.image = image;
-  }
-}
-
-function loadJsonData() {
-  storyData = data['stories'];
-  numStories = storyData.length;  
-
-  for (var i = 0; i < numStories; i++) {
-    var story = storyData[i];
-    var id = story['id'];
-    var title = story['title'];
-    var image = story['image'];
-
-    stories.push(new Story(id,title,image));    
-  }
-  dataLoaded = true;
-}
 
 function touchMoved() {
   return false;
@@ -130,7 +107,6 @@ function showHeader(showbuttons) {
 }
 
 function setup() {
-  data = loadJSON('./data/data.json',loadJsonData);
 
 	// keep a 16:9 portrait format
 	if(windowWidth<windowHeight){
@@ -139,16 +115,10 @@ function setup() {
 		createCanvas( (windowHeight/1.3)*0.5625, windowHeight/1.38,P2D);
   }
 
-//   This doesn't work (maybe needs to be fullscreen):
-//   var myScreenOrientation = window.screen.orientation;
-//   print("myScreenOrientation = "+ myScreenOrientation);
-//   myScreenOrientation.lock("portrait");
-
-
   mgr = new SceneManager();
   mgr.wire();
   mgr.addScene(mainmenu);
-  mgr.addScene(eventlightsettings);
+  mgr.addScene(slidersettings);
   mgr.addScene(buttonsettings);
   mgr.addScene(colourcontrol);
   mgr.showNextScene();

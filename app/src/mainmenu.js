@@ -42,7 +42,7 @@ function mainmenu()
           me.sceneManager.showScene(buttonsettings);
         }
         if(this.index == 1) {
-          me.sceneManager.showScene(shutdownsettings);
+          me.sceneManager.showScene(slidersettings);
         }
         if(this.index == 2) {
           me.sceneManager.showScene(colourcontrol);

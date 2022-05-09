@@ -14,7 +14,7 @@ function colourcontrol()
   var greyColour = color(0);
   var guiVisible = 0; 
   var paletteX = 20;
-  var paletteY = 325;
+  var paletteY = 150;
   var paletteOffset = 287;
   var cpx = paletteX;
   var cpy = paletteY; 
@@ -51,23 +51,6 @@ function colourcontrol()
     }
     // end header menu
 
-
-    allButton = createButton("Select All Lights", 20, 55);
-    allButton.w = 100;
-    allButton.h = 50;
-    allButton.setStyle({
-      fillBg: color(0,0,0),
-      rounding: 0,
-      textSize: 12,
-      strokeWeight: 2,
-      strokeBg: color(0),
-      strokeBgHover: color(0),
-      fillLabel: color(0),
-      fillBgHover: color(255),
-      fillBg: color(255),
-      fillLabelHover : color(0)      
-    });
-
     var buttonstyleSet= {
         "font": 'gotham',
         "textSize": 12,
@@ -84,39 +67,7 @@ function colourcontrol()
     setButton = createButton("Set Colour",  20, height-110);
     setButton.w = width-50;
     setButton.h = 50;
-    setButton.setStyle(buttonstyleSet);    
-
-    //create toggles
-    for(i = 0; i < rowSize;i++) {
-        var size = 50;
-        var s = 75;
-        var yoff = 120;
-        var xoff = 140;
-        var n = "";
-        toggles.push([createToggle("",xoff,yoff+i*s,size,size),createToggle("",xoff + s,yoff+i*s,size,size),createToggle("",xoff + s*2,yoff+i*s,size,size)]);
-    }
-
-
-    var togglestyle= {
-        "rounding": 50,
-        "strokeWeight": 2,
-        "fillBgOn:": color(255),
-        "fillBgOff": color(47,47,47,0),
-        "strokeBgOn" : color(255),
-        "strokeBgOff" : color(255),
-        "strokeBgOnHover" : color(255),
-        "strokeBgOffHover" : color(255)
-    }
-
-    toggles[0][0].setStyle(togglestyle);
-    toggles[0][1].setStyle(togglestyle);
-    toggles[0][2].setStyle(togglestyle);        
-    toggles[1][0].setStyle(togglestyle);
-    toggles[1][1].setStyle(togglestyle);
-    toggles[1][2].setStyle(togglestyle);              
-    toggles[2][0].setStyle(togglestyle);
-    toggles[2][1].setStyle(togglestyle);
-    toggles[2][2].setStyle(togglestyle);  
+    setButton.setStyle(buttonstyleSet);      
          
   }
 
@@ -208,76 +159,25 @@ function colourcontrol()
 
     textAlign(LEFT);
     fill(0);
-    // textSize(20);
-    // text("CUSTOM COLOURS",30,80);    
 
-    var xoff = 20;
-    var yoff = 120;
-    var xoff2 = 140;
-    var yoff2 = 55;
-    var w2 = 50;
-    var h2 = 265;
-    var r = 0;
-    var yspacer = 75;
-    var xspacer = 75;
-    //var w = width - 50;
-    var w = xoff2+xspacer*2 + 30;
-    var h = 50;
-
-    fill(47,47,47,128);
-    rect(xoff,yoff,w,h,r);
-    rect(xoff,yoff+yspacer,w,h,r);
-    rect(xoff,yoff+yspacer*2,w,h,r);
-    fill(255);
-    textSize(12);
-    text("Tower Top",xoff+20,yoff+30);
-    text("Tower Middle",xoff+20,yoff+30+yspacer);
-    text("Tower Base",xoff+20,yoff+30+yspacer*2);
-
-    fill(47,47,47,128);
-    rect(xoff2,yoff2,w2,h2,r);
-    rect(xoff2+xspacer,yoff2,w2,h2,r);
-    rect(xoff2+xspacer*2,yoff2,w2,h2,r);
-    fill(255);
-    textSize(12);
-    text("Norton",xoff2+5,yoff2+30);
-    text("Docker",xoff2+5+xspacer,yoff2+30);
-    text("Gray",xoff2+5+xspacer*2,yoff2+30);
 
     drawColourPalette();
 
     gui.draw();
 
-    if (allButton.isPressed) {
-      toggles[0][0].val = true;
-      toggles[0][1].val = true;
-      toggles[0][2].val = true;        
-      toggles[1][0].val = true;
-      toggles[1][1].val = true;
-      toggles[1][2].val = true;              
-      toggles[2][0].val = true;
-      toggles[2][1].val = true;
-      toggles[2][2].val = true;              
-    }
+
 
     if(setButton.isPressed) {
-      var dmxData = {type:"dmxcontrol", 
-                     name: "colourwheel", r: red(curColour), g: green(curColour), b: blue(curColour), w: red(greyColour),
-                     top1: toggles[0][0].val, top2: toggles[0][1].val, top3: toggles[0][2].val,
-                     mid1: toggles[1][0].val, mid2: toggles[1][1].val, mid3: toggles[1][2].val,
-                     low1: toggles[2][0].val, low2: toggles[2][1].val, low3: toggles[2][2].val,
-      };  
-      var message = JSON.stringify(dmxData); 
-      print(message);
-      //socket.send(message);  
+ 
     }
 
     // colour square for visual feedback
-    // noStroke();
-    // fill(greyColour);
-    // rect(width-55,paletteY+165,50,50);
-    // fill(curColour);
-    // rect(width-120,paletteY+165,50,50);
+    noStroke();
+    fill(curColour);
+    rect(paletteX,paletteY+165,50,50);
+    fill(greyColour);
+    rect(paletteX + 60,paletteY+165,50,50);
+
 
   }
 
